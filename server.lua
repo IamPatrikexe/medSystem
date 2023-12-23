@@ -29,22 +29,22 @@ for k,v in pairs(Config.job) do
 		if args[1] ~= nil then
 			TriggerClientEvent('medSystem:send', args[1], source)
 		else
-			TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Incorrect player ID!")
+			TriggerClientEvent('chatMessage', source, "MED", {255, 0, 0}, "Nem létezö ID!")
 		end				
 	elseif v.police and xPlayer.job.name == 'police' then
 		if args[1] ~= nil then
 			TriggerClientEvent('medSystem:send', args[1], source)
 		else
-			TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Incorrect player ID!")
+			TriggerClientEvent('chatMessage', source, "MED", {255, 0, 0}, "Nem létezö ID!")
 		end		
 	elseif v.mechanic and xPlayer.job.name == 'mechanic' then
 		if args[1] ~= nil then
 			TriggerClientEvent('medSystem:send', args[1], source)
 		else
-			TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Incorrect player ID!")
+			TriggerClientEvent('chatMessage', source, "MED", {255, 0, 0}, "Nem létezö ID!")
 		end			
 	else
-		xPlayer.showNotification('Your job is not Whitelisted!', true , true, 30)
+		xPlayer.showNotification('Ezt te nem csinálhatod!', true , true, 30)
 	end
 
 end
