@@ -1,7 +1,7 @@
 Config = {}
 
 
-Config.Declared = 'Declared Dead. Please Respawn!' -- This Msg appeared when the player died using /med [id] to display blood = 0 - 5% and Hurt area is Head
+Config.Declared = 'Meghaltál!' -- This Msg appeared when the player died using /med [id] to display blood = 0 - 5% and Hurt area is Head
 
 Config.Timer = 8   -- Timer to Remove Med Display after using MedSystem
 
