@@ -1,3 +1,4 @@
+# Hungarian Locales Added BY: IamPatrikexe
 # MODIFIED Medical System
 Modified Medical System New ESX Update
 
