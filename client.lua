@@ -6,7 +6,7 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 local health
 local multi
 local pulse = 70
-local area = "Unknown"
+local area = "Nem látható"
 local lastHit
 local blood = 100
 local bleeding = 0
@@ -18,7 +18,7 @@ local cBlood = -1
 local cNameF = ""
 local cNameL = ""
 local cArea = ""
-local cBleeding = "NONE"
+local cBleeding = "Semmi"
 
 RegisterCommand('getpulse', function(source, args)
 
@@ -38,22 +38,22 @@ AddEventHandler('esx:onPlayerDeath', function(data)
 	multi = 2.0
 	blood = 100
 	health = GetEntityHealth(GetPlayerPed(-1))
-	area = "LEGS/ARMS"
+	area = "Kéz/Láb"
 	local hit, bone = GetPedLastDamageBone(GetPlayerPed(-1))
 	bleeding = 1
 	if (bone == 31086) then
 		multi = 0.0
 		print('HEADSHOT')
-		TriggerEvent('chatMessage', "MedSystem", {255, 0, 0}, "You have been shot/damaged in HEAD area")
+		TriggerEvent('chatMessage', "MED", {255, 0, 0}, "Fejbelőttek!")
 		bleeding = 5
-		area = "HEAD"
+		area = "Fej"
 	end
 	if bone == 24817 or bone == 24818 or bone == 10706 or bone == 24816 or bone == 11816 then
 		multi = 1.0
-		print('BODYSHOT')
-		TriggerEvent('chatMessage', "MedSystem", {255, 0, 0}, "You have been shot/damaged in BODY area")
+		print('Lövés')
+		TriggerEvent('chatMessage', "MED", {255, 0, 0}, "Meglőttek")
 		bleeding = 2
-		area = "BODY"
+		area = "Test"
 	end
 	
 	pulse = ((health / 4 + 20) * multi) + math.random(0, 4)
@@ -97,7 +97,7 @@ AddEventHandler('medSystem:near', function(x,y,z, pulse, blood, nameF, nameL, ar
 
 local md = Config.Declared
 
-	if area == "HEAD" and blood<=5 then
+	if area == "Fej" and blood<=5 then
 	--if area ~= nil then
 		cBlood = blood
 		cPulse = pulse
@@ -121,7 +121,7 @@ local md = Config.Declared
 	
 	if GetDistanceBetweenCoords(x,y,z,a,b,c,false) < 10 then
 		timer = Config.Timer
-		--ESX.ShowNotification( "MedSystem: [0-5] DEAD | [5-15] Needs hospital | [15-38] EMS Can help | [38-55] Police can help | [55+] Healthy", false,true,30)
+		ESX.ShowNotification( "MedSystem: [0-5] DEAD | [5-15] Needs hospital | [15-38] EMS Can help | [38-55] Police can help | [55+] Healthy", false,true,30)
 		cBlood = blood
 		cPulse = pulse
 		cNameF = nameF
@@ -129,13 +129,13 @@ local md = Config.Declared
 		cArea = area
 		
 		if bldn == 1 then
-		cBleeding = "SLOW"
+		cBleeding = "Könnyü"
 		elseif bldn == 2 then
-		cBleeding "MEDIUM"
+		cBleeding "Közepes"
 		elseif bldn == 5 then
-		cBleeding = "FAST"
+		cBleeding = "Súlyos"
 		elseif bldn == 0 then
-		cBleeding = "NONE"
+		cBleeding = "Semmi"
 		end
 
 	
@@ -148,7 +148,7 @@ local md = Config.Declared
 		cNameF = ""
 		cNameL = ""
 		cArea = ""
-		cBleeding = "SLOW"
+		cBleeding = "Lassú"
 	end
 	
 
@@ -160,7 +160,7 @@ Citizen.CreateThread( function()
 			while timer >= 1 do
 				Wait(1)
 				if cPulse ~= -1 and cBlood ~= -1 then
-					DrawAdvancedText(0.7, 0.7, 0.005, 0.0028, 0.9, cNameF .. " " .. cNameL .. "\n~r~Pulse: ~w~" .. cPulse .. "BPM\n~r~Blood: ~w~" .. cBlood .. "%~r~\nHurt area: ~w~" .. cArea .. "\n~r~Bleeding: ~w~" .. cBleeding, 255, 255, 255, 255, 4, 1)
+					DrawAdvancedText(0.7, 0.7, 0.005, 0.0028, 0.9, cNameF .. " " .. cNameL .. "\n~r~Pulzus: ~w~" .. cPulse .. "BPM\n~r~Vérnyomás: ~w~" .. cBlood .. "%~r~\nSeb helye: ~w~" .. cArea .. "\n~r~Vérzés: ~w~" .. cBleeding, 255, 255, 255, 255, 4, 1)
 					
 				end
 			end
