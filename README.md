@@ -55,3 +55,5 @@ Screenshot:
 
 
 -Showtek PH
+
+Hungarian Locales Added by: IamPatrikexe
